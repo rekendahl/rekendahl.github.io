@@ -1,0 +1,9 @@
+---
+contentdir: "content"
+layoutdir: "layouts"
+publishdir: "public"
+indexes:
+  category: "categories"
+baseurl: "http://www.ekendahl.org"
+title: "Robert Ekendahl's web presence"
+...
