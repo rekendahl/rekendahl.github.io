@@ -4,6 +4,7 @@ layoutdir: "layouts"
 publishdir: "."
 indexes:
   category: "categories"
-baseurl: "http://www.ekendahl.org"
+# baseurl: "http://www.ekendahl.org"
+baseurl: "http://rekendahl.github.io"
 title: "Robert Ekendahl's web presence"
 ...
