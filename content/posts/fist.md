@@ -55,6 +55,17 @@ Successfully installed Pygments
 Cleaning up...
 ```
 
+## Test build...
+
+```
+cd ~/Projects/rekendahl.github.io/
+hugo server --watch
+```
+
+Open safari to http://localhost:1313. The cool thing is that after each save the page automatically reloads. __Nice!__
+
+
+
 
 [pages]:https://pages.github.com
 [hugo]: http://hugo.spf13.com
