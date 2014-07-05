@@ -64,8 +64,11 @@ hugo server --watch
 
 Open safari to http://localhost:1313. The cool thing is that after each save the page automatically reloads. __Nice!__
 
+# Launch GitHub Pages lessons:
 
-
+1. Make sure `baseurl` in `config.yaml` is correct
+2. If you do this for a personal page then you need to push to master and push
+   to 'root'. So update `config.yaml` to read publishdir: "."
 
 [pages]:https://pages.github.com
 [hugo]: http://hugo.spf13.com

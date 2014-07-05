@@ -71,6 +71,14 @@ hugo server --watch
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Open safari to &lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;. The cool thing is that after each save the page automatically reloads. &lt;strong&gt;Nice!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Launch GitHub Pages lessons:&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Make sure &lt;code&gt;baseurl&lt;/code&gt; in &lt;code&gt;config.yaml&lt;/code&gt; is correct&lt;/li&gt;
+&lt;li&gt;If you do this for a personal page then you need to push to master and push
+to &amp;lsquo;root&amp;rsquo;. So update &lt;code&gt;config.yaml&lt;/code&gt; to read publishdir: &amp;ldquo;.&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
