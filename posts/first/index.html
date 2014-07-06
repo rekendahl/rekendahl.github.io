@@ -6,9 +6,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <base href="http://localhost:1313">
+    <base href="http://rekendahl.github.io">
     <title> A new home </title>
-    <link rel="canonical" href="http://localhost:1313/posts/first">
+    <link rel="canonical" href="http://rekendahl.github.io/posts/first">
     
 
 <link rel="stylesheet" href="/css/poole.css">
@@ -68,7 +68,7 @@ had to do to make it all work (hopefully not too much).</p>
 
 <p>I decided to use <a href="http://hugo.spf13.com">Hugo</a> mostly because I <em>love</em> the <a href="http://vim.spf13.com">spf13 Vim
 distribution</a>. I love it so much, in fact, that I decided to create
-fork it into [edavim][edavim] with a focus on Electronic Design Automation
+fork it into <a href="https://github.com/rekendahl/vimeda">vimeda</a> with a focus on Electronic Design Automation
 languages. More on that later. When I found that the same author had created a
 fast, static website generator using <a href="http://daringfireball.net/projects/markdown">markdown</a> I know I had to try it.</p>
 
@@ -89,22 +89,15 @@ mv hugo_0.11_darwin_amd64 /usr/local/bin/.
 ln -s /usr/local/bin/hugo_0.11_darwin_amd64 /usr/local/bin/hugo
 </code></pre>
 
+<p>That was easy and it works!</p>
+
 <h2 id="toc_2">Installing <a href="http://pygments.org">Pygments</a></h2>
 
 <pre><code>╭─ekendahl@Roberts-Retina-Macbook  ~
 ╰─$ sudo pip install Pygments                                                                                                                 1 ↵
-Password:
-Downloading/unpacking Pygments
-  Downloading Pygments-1.6.tar.gz (1.4MB): 1.4MB downloaded
-  Running setup.py (path:/private/tmp/pip_build_root/Pygments/setup.py) egg_info for package Pygments
-
-Installing collected packages: Pygments
-  Running setup.py install for Pygments
-
-    Installing pygmentize script to /usr/local/bin
-Successfully installed Pygments
-Cleaning up...
 </code></pre>
+
+<p>Forgot the <code>sudo</code> the first time but otherwise even easier&hellip;</p>
 
 <h2 id="toc_3">Test build&hellip;</h2>
 
@@ -114,13 +107,28 @@ hugo server --watch
 
 <p>Open safari to <a href="http://localhost:1313">http://localhost:1313</a>. The cool thing is that after each save the page automatically reloads. <strong>Nice!</strong></p>
 
-<h1 id="toc_4">Launch GitHub Pages lessons:</h1>
+<p>Once the pages looks satisfactory then <code>ctrl+c</code> the hugo server and:</p>
 
 <ol>
-<li>Make sure <code>baseurl</code> in <code>config.yaml</code> is correct</li>
-<li>If you do this for a personal page then you need to push to master and push
-to &lsquo;root&rsquo;. So update <code>config.yaml</code> to read publishdir: &ldquo;.&rdquo;</li>
+<li><code>hugo</code></li>
+<li><code>git add -A</code></li>
+<li><code>git commit -m &quot;&lt;something descriptive&gt;&quot;</code></li>
+<li><code>git push</code></li>
 </ol>
+
+<h1 id="toc_4">Launch GitHub Pages lessons:</h1>
+
+<ul>
+<li>Make sure <code>baseurl</code> in <code>config.yaml</code> is correct (i.e <code>rekendahl.github.io</code>) or the page won&rsquo;t work.</li>
+<li>If you do this for a personal page and not project page then you need to push to master and push
+to &lsquo;root&rsquo;. So update <code>config.yaml</code> to read <code>publishdir: &quot;.&quot;</code></li>
+</ul>
+
+<p>That&rsquo;s about it. So far <em>Hugo</em> seems fast and easy to use. I&rsquo;m really just
+looking for the ability to write articles of the daily engineering work I do
+and this should allow me to do that.</p>
+
+<p>Next step is to go through setting up a cheap DNS service but that is another post&hellip;</p>
 
         </section>
     </div>
@@ -179,10 +187,7 @@ to &lsquo;root&rsquo;. So update <code>config.yaml</code> to read publishdir: &l
 </script>
 
 
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+</body>
 </html>
 
 

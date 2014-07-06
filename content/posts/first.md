@@ -15,7 +15,7 @@ had to do to make it all work (hopefully not too much).
 
 I decided to use [Hugo][hugo] mostly because I _love_ the [spf13 Vim
 distribution][vimspf13]. I love it so much, in fact, that I decided to create
-fork it into [edavim][edavim] with a focus on Electronic Design Automation
+fork it into [vimeda][vimeda] with a focus on Electronic Design Automation
 languages. More on that later. When I found that the same author had created a
 fast, static website generator using [markdown][md] I know I had to try it.
 
@@ -37,23 +37,16 @@ mv hugo_0.11_darwin_amd64 /usr/local/bin/.
 ln -s /usr/local/bin/hugo_0.11_darwin_amd64 /usr/local/bin/hugo
 ```
 
+That was easy and it works!
+
 ## Installing [Pygments][pygments]
 
 ```
 ╭─ekendahl@Roberts-Retina-Macbook  ~
 ╰─$ sudo pip install Pygments                                                                                                                 1 ↵
-Password:
-Downloading/unpacking Pygments
-  Downloading Pygments-1.6.tar.gz (1.4MB): 1.4MB downloaded
-  Running setup.py (path:/private/tmp/pip_build_root/Pygments/setup.py) egg_info for package Pygments
-
-Installing collected packages: Pygments
-  Running setup.py install for Pygments
-
-    Installing pygmentize script to /usr/local/bin
-Successfully installed Pygments
-Cleaning up...
 ```
+
+Forgot the `sudo` the first time but otherwise even easier...
 
 ## Test build...
 
@@ -64,14 +57,29 @@ hugo server --watch
 
 Open safari to http://localhost:1313. The cool thing is that after each save the page automatically reloads. __Nice!__
 
+Once the pages looks satisfactory then `ctrl+c` the hugo server and:
+
+1. `hugo`
+2. `git add -A`
+3. `git commit -m "<something descriptive>"`
+4. `git push`
+
 # Launch GitHub Pages lessons:
 
-1. Make sure `baseurl` in `config.yaml` is correct
-2. If you do this for a personal page then you need to push to master and push
-   to 'root'. So update `config.yaml` to read publishdir: "."
+* Make sure `baseurl` in `config.yaml` is correct (i.e `rekendahl.github.io`) or the page won't work.
+* If you do this for a personal page and not project page then you need to push to master and push
+   to 'root'. So update `config.yaml` to read `publishdir: "."`
+
+
+That's about it. So far _Hugo_ seems fast and easy to use. I'm really just
+looking for the ability to write articles of the daily engineering work I do
+and this should allow me to do that.
+
+Next step is to go through setting up a cheap DNS service but that is another post...
 
 [pages]:https://pages.github.com
 [hugo]: http://hugo.spf13.com
 [vimspf13]:http://vim.spf13.com
 [md]:http://daringfireball.net/projects/markdown
 [pygments]:http://pygments.org
+[vimeda]:https://github.com/rekendahl/vimeda

@@ -3,7 +3,7 @@
   <channel>
       <title>Github on Robert Ekendahl&#39;s web presence </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/categories/github/index.xml</link>
+    <link>http://rekendahl.github.io/categories/github/index.xml</link>
     
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>A new home</title>
-      <link>http://localhost:1313/posts/first</link>
+      <link>http://rekendahl.github.io/posts/first</link>
       <pubDate>Fri, 04 Jul 2014 00:00:00 UTC</pubDate>
       
-      <guid>http://localhost:1313/posts/first</guid>
+      <guid>http://rekendahl.github.io/posts/first</guid>
       <description>
 
 &lt;h1 id=&#34;toc_0&#34;&gt;A new home&lt;/h1&gt;
@@ -26,7 +26,7 @@ had to do to make it all work (hopefully not too much).&lt;/p&gt;
 
 &lt;p&gt;I decided to use &lt;a href=&#34;http://hugo.spf13.com&#34;&gt;Hugo&lt;/a&gt; mostly because I &lt;em&gt;love&lt;/em&gt; the &lt;a href=&#34;http://vim.spf13.com&#34;&gt;spf13 Vim
 distribution&lt;/a&gt;. I love it so much, in fact, that I decided to create
-fork it into [edavim][edavim] with a focus on Electronic Design Automation
+fork it into &lt;a href=&#34;https://github.com/rekendahl/vimeda&#34;&gt;vimeda&lt;/a&gt; with a focus on Electronic Design Automation
 languages. More on that later. When I found that the same author had created a
 fast, static website generator using &lt;a href=&#34;http://daringfireball.net/projects/markdown&#34;&gt;markdown&lt;/a&gt; I know I had to try it.&lt;/p&gt;
 
@@ -47,22 +47,15 @@ mv hugo_0.11_darwin_amd64 /usr/local/bin/.
 ln -s /usr/local/bin/hugo_0.11_darwin_amd64 /usr/local/bin/hugo
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;That was easy and it works!&lt;/p&gt;
+
 &lt;h2 id=&#34;toc_2&#34;&gt;Installing &lt;a href=&#34;http://pygments.org&#34;&gt;Pygments&lt;/a&gt;&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;╭─ekendahl@Roberts-Retina-Macbook  ~
 ╰─$ sudo pip install Pygments                                                                                                                 1 ↵
-Password:
-Downloading/unpacking Pygments
-  Downloading Pygments-1.6.tar.gz (1.4MB): 1.4MB downloaded
-  Running setup.py (path:/private/tmp/pip_build_root/Pygments/setup.py) egg_info for package Pygments
-
-Installing collected packages: Pygments
-  Running setup.py install for Pygments
-
-    Installing pygmentize script to /usr/local/bin
-Successfully installed Pygments
-Cleaning up...
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Forgot the &lt;code&gt;sudo&lt;/code&gt; the first time but otherwise even easier&amp;hellip;&lt;/p&gt;
 
 &lt;h2 id=&#34;toc_3&#34;&gt;Test build&amp;hellip;&lt;/h2&gt;
 
@@ -72,13 +65,28 @@ hugo server --watch
 
 &lt;p&gt;Open safari to &lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;. The cool thing is that after each save the page automatically reloads. &lt;strong&gt;Nice!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;toc_4&#34;&gt;Launch GitHub Pages lessons:&lt;/h1&gt;
+&lt;p&gt;Once the pages looks satisfactory then &lt;code&gt;ctrl+c&lt;/code&gt; the hugo server and:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Make sure &lt;code&gt;baseurl&lt;/code&gt; in &lt;code&gt;config.yaml&lt;/code&gt; is correct&lt;/li&gt;
-&lt;li&gt;If you do this for a personal page then you need to push to master and push
-to &amp;lsquo;root&amp;rsquo;. So update &lt;code&gt;config.yaml&lt;/code&gt; to read publishdir: &amp;ldquo;.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hugo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git add -A&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git commit -m &amp;quot;&amp;lt;something descriptive&amp;gt;&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h1 id=&#34;toc_4&#34;&gt;Launch GitHub Pages lessons:&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure &lt;code&gt;baseurl&lt;/code&gt; in &lt;code&gt;config.yaml&lt;/code&gt; is correct (i.e &lt;code&gt;rekendahl.github.io&lt;/code&gt;) or the page won&amp;rsquo;t work.&lt;/li&gt;
+&lt;li&gt;If you do this for a personal page and not project page then you need to push to master and push
+to &amp;lsquo;root&amp;rsquo;. So update &lt;code&gt;config.yaml&lt;/code&gt; to read &lt;code&gt;publishdir: &amp;quot;.&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That&amp;rsquo;s about it. So far &lt;em&gt;Hugo&lt;/em&gt; seems fast and easy to use. I&amp;rsquo;m really just
+looking for the ability to write articles of the daily engineering work I do
+and this should allow me to do that.&lt;/p&gt;
+
+&lt;p&gt;Next step is to go through setting up a cheap DNS service but that is another post&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
