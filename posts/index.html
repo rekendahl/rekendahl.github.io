@@ -6,9 +6,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <base href="http://rekendahl.github.io">
+    <base href="http://localhost:1313">
     <title> Posts </title>
-    <link rel="canonical" href="http://rekendahl.github.io/posts">
+    <link rel="canonical" href="http://localhost:1313/posts">
     
 
 <link rel="stylesheet" href="/css/poole.css">
@@ -61,7 +61,7 @@
             
             
 <li>
-  <span><h2><a href='http://rekendahl.github.io/posts/first'> A new home</a> </h2></span>
+  <span><h2><a href='http://localhost:1313/posts/first'> A new home</a> </h2></span>
   <span class="left">Fri, Jul 4, 2014</span>
   <span class="right">
     <ul class="catlist">
@@ -111,7 +111,10 @@
 </script>
 
 
-</body>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
 
 
