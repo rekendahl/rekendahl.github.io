@@ -46,8 +46,8 @@ options &amp;lt;formula&amp;gt;&lt;/code&gt; to see available switches.&lt;/p&gt
 &lt;pre&gt;&lt;code&gt;brew install macvim -override-system-vim -with-python3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;That&amp;rsquo;s it! With that I show &amp;ldquo;dynamic&amp;rdquo; support (&lt;code&gt;__+__python/dyn&lt;/code&gt; &amp;amp;
-&lt;code&gt;__+__python3/dyn&lt;/code&gt;) for both Python 2 &amp;amp; 3 when I do &lt;code&gt;mvim --version&lt;/code&gt; or
+&lt;p&gt;That&amp;rsquo;s it! With that I show &amp;ldquo;dynamic&amp;rdquo; support (&lt;code&gt;+python/dyn&lt;/code&gt; &amp;amp;
+&lt;code&gt;+python3/dyn&lt;/code&gt;) for both Python 2 &amp;amp; 3 when I do &lt;code&gt;mvim --version&lt;/code&gt; or
 &lt;code&gt;:version&lt;/code&gt; from inside &lt;a href=&#34;https://github.com/b4winckler/macvim&#34;&gt;macvim&lt;/a&gt; in normal mode. Hopefully this will make python
 mode work even better with my python3 files.&lt;/p&gt;
 

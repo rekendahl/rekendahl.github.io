@@ -36,8 +36,8 @@ So to get python 2 & 3 support for [macvim] using [brew] I simply did:
 brew install macvim -override-system-vim -with-python3
 ```
 
-That's it! With that I show "dynamic" support (`__+__python/dyn` &
-`__+__python3/dyn`) for both Python 2 & 3 when I do `mvim --version` or
+That's it! With that I show "dynamic" support (`+python/dyn` &
+`+python3/dyn`) for both Python 2 & 3 when I do `mvim --version` or
 `:version` from inside [macvim] in normal mode. Hopefully this will make python
 mode work even better with my python3 files.
 
