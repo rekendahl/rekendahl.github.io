@@ -1,0 +1,177 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="http://rekendahl.github.io">
+    <title> Installing python3 support for VIM 7.4 </title>
+    <link rel="canonical" href="http://rekendahl.github.io/posts/vim74-python3">
+    
+
+<link rel="stylesheet" href="/css/poole.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/lanyon.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+</head>
+
+
+<body class="theme-base-08">
+  
+
+
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    <a class="sidebar-nav-item" href="/posts">Blog</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014 Spencer Lyon. Powered by <a href="http://hugo.spf13.com">Hugo</a>. Design adapted from <a href="http://lanyon.getpoole.com">Lanyon</a>.
+    </p>
+  </div>
+</div>
+
+
+  
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/posts" title="Blog">Blog Posts</a>
+        </h3>
+      </div>
+    </div>
+
+    
+    <div class="container content">
+      <h1 class="post-title">Installing python3 support for VIM 7.4</h1>
+        <section id="main">
+          <h5 id="date"> Sun Jul 6, 2014 </h5>
+          
+
+<h1 id="toc_0">VIM and Python3</h1>
+
+<p>I&rsquo;ve been lucky enough to learn <a href="http://www.python.org">Python</a> at work recently. It is
+quickly become my favorite language! Since we&rsquo;re starting a new exploratory
+project at work we decided to work with python3. It&rsquo;s the right decision
+<strong>but</strong> unfortunately VIM still lacks great plug-ins that &ldquo;just work&rdquo; with
+python3.</p>
+
+<p>I&rsquo;m currently using <a href="https://github.com/klen/python-mode">python-mode</a> which is <em>ok</em> but I&rsquo;m considering
+testing out <a href="https://github.com/davidhalter/jedi-vim">jedi-vim</a> which seem like a more interesting alternative.</p>
+
+<p>I&rsquo;ve learned that both these plug-ins do support python3 but they both require
+<a href="http://www.vim.org">vim</a> to be installed with <code>+python3</code> to support it. I&rsquo;ve had some issue
+getting this to work but here are the instructions for the different OS&rsquo; I need
+to work in.</p>
+
+<h1 id="toc_1">MAC:</h1>
+
+<p>OS-X turned out to be easy (there is a reason it&rsquo;s my preferd OS), yet it still
+took me awhile to figure out! I use [homebrew][brew] and <a href="https://github.com/b4winckler/macvim">macvim</a> and
+after I finally looked <em>inside</em> the <a href="https://github.com/Homebrew/homebrew/blob/master/Library/Formula/macvim.rb">homebrew <em>formula</em></a> I managed to
+figure out the switch (see below). As a side not I also learned you can <code>brew
+options &lt;formula&gt;</code> to see available switches.</p>
+
+<p>So to get python 2 &amp; 3 support for <a href="https://github.com/b4winckler/macvim">macvim</a> using [brew] I simply did:</p>
+
+<pre><code>brew install macvim -override-system-vim -with-python3
+</code></pre>
+
+<p>That&rsquo;s it! With that I show &ldquo;dynamic&rdquo; support (<code>__+__python/dyn</code> &amp;
+<code>__+__python3/dyn</code>) for both Python 2 &amp; 3 when I do <code>mvim --version</code> or
+<code>:version</code> from inside <a href="https://github.com/b4winckler/macvim">macvim</a> in normal mode. Hopefully this will make python
+mode work even better with my python3 files.</p>
+
+<p>While I was at it I also reinstalled <a href="http://www.vim.org">vim</a> with:</p>
+
+<pre><code>brew install vim --override-system-vi --with-python3
+</code></pre>
+
+<p>Which gave me this warning: <code>Your PYTHONPATH points to a site-packages dir for
+Python 2.x but you are running Python 3.x!</code> but still worked and shows
+<code>+python3/dyn</code>. I use vim less frequently on mac but hopefully it&rsquo;s working!</p>
+
+<h1 id="toc_2">Next steps&hellip;</h1>
+
+<p>I also need to get python3 support for <a href="http://www.vim.org">vim</a> under [cygwin]. I will update this
+page if I figure out how to do that. I think it will require me to build from
+source.</p>
+
+        </section>
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  
+
+<div class="container">
+  <hr />
+  <hr />
+  
+
+  
+    <span class="right">
+    <em>Next: </em><a class="next" href="http://rekendahl.github.io/posts/first"> &nbsp; A new home</a> &raquo;
+    </span>
+  
+</div>
+
+  <br />
+  
+<div class="container">
+  <ul class="catlist">
+    <li><em>Categories: </em></li>
+    
+      <li><a href="/categories/vim">vim</a> </li>
+    
+      <li><a href="/categories/python">python</a> </li>
+    
+  </ul>
+</div>
+
+
+
+  
+  
+
+<div class="container content">
+<footer>
+  <div>
+    <p class="right credit">
+    <a href="/">(c) Robert Ekendahl</a>
+    </p>
+  </div>
+</footer>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36732392-2', 'sglyon.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
+
+
+
+

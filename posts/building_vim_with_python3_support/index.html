@@ -1,0 +1,247 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="http://localhost:1313">
+    <title> Building VIM with `python3` support </title>
+    <link rel="canonical" href="http://localhost:1313/posts/building_vim_with_python3_support">
+    
+
+<link rel="stylesheet" href="/css/poole.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/lanyon.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+</head>
+
+
+<body class="theme-base-08">
+  
+
+
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+
+<div class="sidebar" id="sidebar">
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    <a class="sidebar-nav-item" href="/posts">Blog</a>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014 Spencer Lyon. Powered by <a href="http://hugo.spf13.com">Hugo</a>. Design adapted from <a href="http://lanyon.getpoole.com">Lanyon</a>.
+    </p>
+  </div>
+</div>
+
+
+  
+  <div class="wrap">
+    <div class="masthead">
+      <div class="container">
+        <h3 class="masthead-title">
+          <a href="/posts" title="Blog">Blog Posts</a>
+        </h3>
+      </div>
+    </div>
+
+    
+    <div class="container content">
+      <h1 class="post-title">Building VIM with `python3` support</h1>
+        <section id="main">
+          <h5 id="date"> Sun Jul 6, 2014 </h5>
+          
+
+<h1 id="toc_0">Building VIM 7.4 from source with python 2 &amp; 3 support.</h1>
+
+<p>I&rsquo;ve recently had the pleasure of learning <a href="http://www.python.org">python</a> at
+<a href="http://www.testevolution.com">work</a>. We&rsquo;re using it for prototyping of a new methodology but I&rsquo;m
+liking the customer interface so much that I&rsquo;m hoping we end up keeping it as a
+(default?) option.</p>
+
+<p>For this project we decided to use python 3.4. This is the correct decision but
+unfortunately my <a href="http://www.vim.org">favorite editor</a>&rsquo;s python packages only work with python
+2 by default. After some investigation it became clear that both my current
+<a href="https://github.com/klen/python-mode">python-mode</a> and the <a href="https://github.com/davidhalter/jedi-vim">new
+package</a> I&rsquo;m ogling both requires VIM
+to be compiled with +python3. Adding to the pain <a href="http://brew.sh">homebrew</a> seems
+to have issues adding python 3. So I&rsquo;m seemingly stuck compiling VIM from
+scratch on all platform where I &ldquo;need&rdquo; it. I have done this once before under
+linux and it&rsquo;s not too hard. Let&rsquo;s hope this time goes smoothly as well!</p>
+
+<p>This time I need to do it for three platforms:</p>
+
+<ol>
+<li>Mac</li>
+<li>Windows 7</li>
+<li>CentOS 5.<em>x</em> Linux</li>
+</ol>
+
+<p>Let&rsquo;s start with the macbook.</p>
+
+<h1 id="toc_1">Compiling mvim on mac</h1>
+
+<p>Without <a href="http://brew.sh">homebrew</a> support I went to <a href="https://github.com/b4winckler/macvim">the
+source</a> and found a <a href="https://github.com/b4winckler/macvim/wiki/Building">seemingly complete
+wiki entry for installing from
+source</a>. Let&rsquo;s see where
+does instructions takes us.</p>
+
+<pre><code>$ git clone git://github.com/b4winckler/macvim.git
+</code></pre>
+
+<p>Rather confusingly I found by coincidence at the bottom of <a href="https://github.com/b4winckler/macvim/wiki/Building">that wiki
+page</a> that you want to build <em>document icons</em> first. Not 100%
+sure what document icons are but I&rsquo;m all for pretty so:</p>
+
+<pre><code>$ cd src/MacVim/icons
+─ekendahl@Roberts-Retina-Macbook  ~/Projects/macvim/src/MacVim/icons  ‹master*›
+╰─$ make getenvy                                                                                                                                                                                2 ↵
+curl http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip --location -o EnvyCodeR.zip
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  168k  100  168k    0     0   906k      0 --:--:-- --:--:-- --:--:--  907k
+unzip -jo EnvyCodeR.zip
+Archive:  EnvyCodeR.zip
+  inflating: Envy Code R Bold.ttf
+  inflating: Envy Code R Command Prompt.reg
+  inflating: Envy Code R Italic.ttf
+  inflating: Envy Code R.ttf
+  inflating: Read Me.txt
+  inflating: Envy Code R VS Italic-as-bold.ttf
+  inflating: Envy Code R VS.ttf
+# unzip uses the file date from the zip file. Change the file date to
+# &quot;now&quot;, so that the zip is not unzipped in every `make` run.`
+touch Envy\ Code\ R\ Bold.ttf
+</code></pre>
+
+<p>So far so good but then this :-(:</p>
+
+<pre><code>─ekendahl@Roberts-Retina-Macbook  ~/Projects/macvim/src/MacVim/icons  ‹master*›
+╰─$ make all
+rm -f MacVim-*.icns
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C makeicns
+cc -fpascal-strings -O2   -c -o IconFamily.o IconFamily.m
+IconFamily.m:102:42: warning: 'NewHandle' is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        hIconFamily = (IconFamilyHandle) NewHandle( 0 );
+
+...
+
+conFamily.m:1264:3: error: use of undeclared identifier 'cgPal'
+                cgPal = CGPaletteCreateDefaultColorPalette();
+
+...
+
+71 warnings and 5 errors generated.
+make[1]: *** [IconFamily.o] Error 1
+make: *** [all] Error 2
+</code></pre>
+
+<p>Sigh&hellip; Luckily there is a
+<a href="http://macvim.googlecode.com/files/MacVim-docicon-pack.tbz">downloads</a> so
+let&rsquo;s use that instead&hellip;</p>
+
+<pre><code>$ cd &lt;macvim root&gt;
+$ git checkout .
+$ cd src/MacVim/icons
+$ tar xjf ~/Downloads/MacVim-docicon-pack.tbz
+</code></pre>
+
+<p>Hopefully that works&hellip; Back to top ok <a href="https://github.com/b4winckler/macvim/wiki/Building">wiki page</a></p>
+
+<p>```
+$ cd src
+$ ./configure &ndash;with-features=huge \
+              &ndash;enable-rubyinterp \
+              &ndash;enable-pythoninterp \
+              &ndash;enable-perlinterp \
+              &ndash;enable-cscope \
+              &ndash;enable-pythoninterp \
+              &ndash;enable-python3interp \
+              &ndash;with-compiledby=robert@ekendahl.org</p>
+
+        </section>
+    </div>
+  </div>
+
+  <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  
+
+<div class="container">
+  <hr />
+  <hr />
+  
+    <span class="left">
+    &nbsp; <em>&laquo; Previous:</em> <a class="next" href="http://localhost:1313/posts/vim74-python3">Installing python3 support for VIM 7.4</a>
+    </span>
+  
+
+  
+    <span class="right">
+    <em>Next: </em><a class="next" href="http://localhost:1313/posts/cheap_webhosting"> &nbsp; Cheap WebHosting</a> &raquo;
+    </span>
+  
+</div>
+
+  <br />
+  
+<div class="container">
+  <ul class="catlist">
+    <li><em>Categories: </em></li>
+    
+      <li><a href="/categories/vim">vim</a> </li>
+    
+      <li><a href="/categories/python">python</a> </li>
+    
+      <li><a href="/categories/python-3">python 3</a> </li>
+    
+      <li><a href="/categories/python-2">python 2</a> </li>
+    
+  </ul>
+</div>
+
+
+
+  
+  
+
+<div class="container content">
+<footer>
+  <div>
+    <p class="right credit">
+    <a href="/">(c) Robert Ekendahl</a>
+    </p>
+  </div>
+</footer>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36732392-2', 'sglyon.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
+
+
+
+

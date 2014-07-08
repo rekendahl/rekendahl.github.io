@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Python-2 on Robert Ekendahl&#39;s web presence </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/python-2/index.xml</link>
+    
+    
+    
+    <updated>Sun, 06 Jul 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Building VIM with `python3` support</title>
+      <link>http://localhost:1313/posts/building_vim_with_python3_support</link>
+      <pubDate>Sun, 06 Jul 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/building_vim_with_python3_support</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Building VIM 7.4 from source with python 2 &amp;amp; 3 support.&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve recently had the pleasure of learning &lt;a href=&#34;http://www.python.org&#34;&gt;python&lt;/a&gt; at
+&lt;a href=&#34;http://www.testevolution.com&#34;&gt;work&lt;/a&gt;. We&amp;rsquo;re using it for prototyping of a new methodology but I&amp;rsquo;m
+liking the customer interface so much that I&amp;rsquo;m hoping we end up keeping it as a
+(default?) option.&lt;/p&gt;
+
+&lt;p&gt;For this project we decided to use python 3.4. This is the correct decision but
+unfortunately my &lt;a href=&#34;http://www.vim.org&#34;&gt;favorite editor&lt;/a&gt;&amp;rsquo;s python packages only work with python
+2 by default. After some investigation it became clear that both my current
+&lt;a href=&#34;https://github.com/klen/python-mode&#34;&gt;python-mode&lt;/a&gt; and the &lt;a href=&#34;https://github.com/davidhalter/jedi-vim&#34;&gt;new
+package&lt;/a&gt; I&amp;rsquo;m ogling both requires VIM
+to be compiled with +python3. Adding to the pain &lt;a href=&#34;http://brew.sh&#34;&gt;homebrew&lt;/a&gt; seems
+to have issues adding python 3. So I&amp;rsquo;m seemingly stuck compiling VIM from
+scratch on all platform where I &amp;ldquo;need&amp;rdquo; it. I have done this once before under
+linux and it&amp;rsquo;s not too hard. Let&amp;rsquo;s hope this time goes smoothly as well!&lt;/p&gt;
+
+&lt;p&gt;This time I need to do it for three platforms:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Mac&lt;/li&gt;
+&lt;li&gt;Windows 7&lt;/li&gt;
+&lt;li&gt;CentOS 5.&lt;em&gt;x&lt;/em&gt; Linux&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with the macbook.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;Compiling mvim on mac&lt;/h1&gt;
+
+&lt;p&gt;Without &lt;a href=&#34;http://brew.sh&#34;&gt;homebrew&lt;/a&gt; support I went to &lt;a href=&#34;https://github.com/b4winckler/macvim&#34;&gt;the
+source&lt;/a&gt; and found a &lt;a href=&#34;https://github.com/b4winckler/macvim/wiki/Building&#34;&gt;seemingly complete
+wiki entry for installing from
+source&lt;/a&gt;. Let&amp;rsquo;s see where
+does instructions takes us.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone git://github.com/b4winckler/macvim.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Rather confusingly I found by coincidence at the bottom of &lt;a href=&#34;https://github.com/b4winckler/macvim/wiki/Building&#34;&gt;that wiki
+page&lt;/a&gt; that you want to build &lt;em&gt;document icons&lt;/em&gt; first. Not 100%
+sure what document icons are but I&amp;rsquo;m all for pretty so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd src/MacVim/icons
+─ekendahl@Roberts-Retina-Macbook  ~/Projects/macvim/src/MacVim/icons  ‹master*›
+╰─$ make getenvy                                                                                                                                                                                2 ↵
+curl http://download.damieng.com/fonts/original/EnvyCodeR-PR7.zip --location -o EnvyCodeR.zip
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  168k  100  168k    0     0   906k      0 --:--:-- --:--:-- --:--:--  907k
+unzip -jo EnvyCodeR.zip
+Archive:  EnvyCodeR.zip
+  inflating: Envy Code R Bold.ttf
+  inflating: Envy Code R Command Prompt.reg
+  inflating: Envy Code R Italic.ttf
+  inflating: Envy Code R.ttf
+  inflating: Read Me.txt
+  inflating: Envy Code R VS Italic-as-bold.ttf
+  inflating: Envy Code R VS.ttf
+# unzip uses the file date from the zip file. Change the file date to
+# &amp;quot;now&amp;quot;, so that the zip is not unzipped in every `make` run.`
+touch Envy\ Code\ R\ Bold.ttf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So far so good but then this :-(:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;─ekendahl@Roberts-Retina-Macbook  ~/Projects/macvim/src/MacVim/icons  ‹master*›
+╰─$ make all
+rm -f MacVim-*.icns
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -C makeicns
+cc -fpascal-strings -O2   -c -o IconFamily.o IconFamily.m
+IconFamily.m:102:42: warning: &#39;NewHandle&#39; is deprecated: first deprecated in OS X 10.8 [-Wdeprecated-declarations]
+        hIconFamily = (IconFamilyHandle) NewHandle( 0 );
+
+...
+
+conFamily.m:1264:3: error: use of undeclared identifier &#39;cgPal&#39;
+                cgPal = CGPaletteCreateDefaultColorPalette();
+
+...
+
+71 warnings and 5 errors generated.
+make[1]: *** [IconFamily.o] Error 1
+make: *** [all] Error 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sigh&amp;hellip; Luckily there is a
+&lt;a href=&#34;http://macvim.googlecode.com/files/MacVim-docicon-pack.tbz&#34;&gt;downloads&lt;/a&gt; so
+let&amp;rsquo;s use that instead&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd &amp;lt;macvim root&amp;gt;
+$ git checkout .
+$ cd src/MacVim/icons
+$ tar xjf ~/Downloads/MacVim-docicon-pack.tbz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hopefully that works&amp;hellip; Back to top ok &lt;a href=&#34;https://github.com/b4winckler/macvim/wiki/Building&#34;&gt;wiki page&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;```
+$ cd src
+$ ./configure &amp;ndash;with-features=huge \
+              &amp;ndash;enable-rubyinterp \
+              &amp;ndash;enable-pythoninterp \
+              &amp;ndash;enable-perlinterp \
+              &amp;ndash;enable-cscope \
+              &amp;ndash;enable-pythoninterp \
+              &amp;ndash;enable-python3interp \
+              &amp;ndash;with-compiledby=robert@ekendahl.org&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Webhosting on Robert Ekendahl&#39;s web presence </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/categories/webhosting/index.xml</link>
+    
+    
+    
+    <updated>Sat, 05 Jul 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Cheap WebHosting</title>
+      <link>http://localhost:1313/posts/cheap_webhosting</link>
+      <pubDate>Sat, 05 Jul 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://localhost:1313/posts/cheap_webhosting</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;Cheap Domain Web Hosting.&lt;/h1&gt;
+
+&lt;p&gt;Since I&amp;rsquo;m lucky enough to own my own domain I need to go through the hassle of
+hosting it. I used to use &lt;a href=&#34;http://www.snowmoonsoftware.com&#34;&gt;a friend&amp;rsquo;s webhosting
+service&lt;/a&gt; but with GitHub offering free static
+WebHosting (which is more then enough for my needs) and Microsoft at the time I
+started where offering free mail hosting I decided to switch.&lt;/p&gt;
+
+&lt;p&gt;This still leaves the need for two services.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Web Registration (I use &lt;a href=&#34;http://www.hostway.com&#34;&gt;Hostway&lt;/a&gt; randomly as they are cheap) and&lt;/li&gt;
+&lt;li&gt;Domain Name Service (DNS)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These are my notes about cheap domain name service. I decided to use
+&lt;a href=&#34;http://freedns.afraid.org&#34;&gt;FreeDNS&lt;/a&gt;&amp;rsquo;s &lt;em&gt;premium&lt;/em&gt; service for
+i&lt;a href=&#34;http://freedns.afraid.org/premium/&#34;&gt;$30/year&lt;/a&gt;. They do offer a &lt;em&gt;free&lt;/em&gt; service
+as well but that makes your domain public something I&amp;rsquo;m not interested in.
+$30/year gives me one stealth domain under my control with 25 subdomains which
+for my needs should be plenty. After paying I was not directly given the
+ability to register my domain as a &lt;em&gt;stealth&lt;/em&gt; domain (only public and private).
+Decided to hold off until Monday to see what will happen.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,7 +1,7 @@
 ---
 title: "Cheap WebHosting"
 date: "2014-07-05"
-draft: 1
+draft: true
 description: "Configuring web-hosting on the cheap"
 categories:
     - "webhosting"

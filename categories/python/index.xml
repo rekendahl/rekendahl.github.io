@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Python on Robert Ekendahl&#39;s web presence </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://rekendahl.github.io/categories/python/index.xml</link>
+    
+    
+    
+    <updated>Sun, 06 Jul 2014 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Installing python3 support for VIM 7.4</title>
+      <link>http://rekendahl.github.io/posts/vim74-python3</link>
+      <pubDate>Sun, 06 Jul 2014 00:00:00 UTC</pubDate>
+      
+      <guid>http://rekendahl.github.io/posts/vim74-python3</guid>
+      <description>
+
+&lt;h1 id=&#34;toc_0&#34;&gt;VIM and Python3&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been lucky enough to learn &lt;a href=&#34;http://www.python.org&#34;&gt;Python&lt;/a&gt; at work recently. It is
+quickly become my favorite language! Since we&amp;rsquo;re starting a new exploratory
+project at work we decided to work with python3. It&amp;rsquo;s the right decision
+&lt;strong&gt;but&lt;/strong&gt; unfortunately VIM still lacks great plug-ins that &amp;ldquo;just work&amp;rdquo; with
+python3.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m currently using &lt;a href=&#34;https://github.com/klen/python-mode&#34;&gt;python-mode&lt;/a&gt; which is &lt;em&gt;ok&lt;/em&gt; but I&amp;rsquo;m considering
+testing out &lt;a href=&#34;https://github.com/davidhalter/jedi-vim&#34;&gt;jedi-vim&lt;/a&gt; which seem like a more interesting alternative.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve learned that both these plug-ins do support python3 but they both require
+&lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt; to be installed with &lt;code&gt;+python3&lt;/code&gt; to support it. I&amp;rsquo;ve had some issue
+getting this to work but here are the instructions for the different OS&amp;rsquo; I need
+to work in.&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;MAC:&lt;/h1&gt;
+
+&lt;p&gt;OS-X turned out to be easy (there is a reason it&amp;rsquo;s my preferd OS), yet it still
+took me awhile to figure out! I use [homebrew][brew] and &lt;a href=&#34;https://github.com/b4winckler/macvim&#34;&gt;macvim&lt;/a&gt; and
+after I finally looked &lt;em&gt;inside&lt;/em&gt; the &lt;a href=&#34;https://github.com/Homebrew/homebrew/blob/master/Library/Formula/macvim.rb&#34;&gt;homebrew &lt;em&gt;formula&lt;/em&gt;&lt;/a&gt; I managed to
+figure out the switch (see below). As a side not I also learned you can &lt;code&gt;brew
+options &amp;lt;formula&amp;gt;&lt;/code&gt; to see available switches.&lt;/p&gt;
+
+&lt;p&gt;So to get python 2 &amp;amp; 3 support for &lt;a href=&#34;https://github.com/b4winckler/macvim&#34;&gt;macvim&lt;/a&gt; using [brew] I simply did:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install macvim -override-system-vim -with-python3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! With that I show &amp;ldquo;dynamic&amp;rdquo; support (&lt;code&gt;__+__python/dyn&lt;/code&gt; &amp;amp;
+&lt;code&gt;__+__python3/dyn&lt;/code&gt;) for both Python 2 &amp;amp; 3 when I do &lt;code&gt;mvim --version&lt;/code&gt; or
+&lt;code&gt;:version&lt;/code&gt; from inside &lt;a href=&#34;https://github.com/b4winckler/macvim&#34;&gt;macvim&lt;/a&gt; in normal mode. Hopefully this will make python
+mode work even better with my python3 files.&lt;/p&gt;
+
+&lt;p&gt;While I was at it I also reinstalled &lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install vim --override-system-vi --with-python3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which gave me this warning: &lt;code&gt;Your PYTHONPATH points to a site-packages dir for
+Python 2.x but you are running Python 3.x!&lt;/code&gt; but still worked and shows
+&lt;code&gt;+python3/dyn&lt;/code&gt;. I use vim less frequently on mac but hopefully it&amp;rsquo;s working!&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;Next steps&amp;hellip;&lt;/h1&gt;
+
+&lt;p&gt;I also need to get python3 support for &lt;a href=&#34;http://www.vim.org&#34;&gt;vim&lt;/a&gt; under [cygwin]. I will update this
+page if I figure out how to do that. I think it will require me to build from
+source.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
